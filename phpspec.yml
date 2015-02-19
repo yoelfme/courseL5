@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: CourseL5
+        psr4_prefix: CourseL5
         src_path: app

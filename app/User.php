@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace CourseL5;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

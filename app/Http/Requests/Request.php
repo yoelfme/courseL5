@@ -1,4 +1,4 @@
-<?php namespace App\Http\Requests;
+<?php namespace CourseL5\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
