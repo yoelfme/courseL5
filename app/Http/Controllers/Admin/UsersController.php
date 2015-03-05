@@ -4,7 +4,7 @@ use CourseL5\Http\Requests;
 use CourseL5\Http\Controllers\Controller;
 
 use CourseL5\User;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 class UsersController extends Controller {
 
@@ -26,17 +26,21 @@ class UsersController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('admin.users.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
 	public function store()
 	{
-		//
+		$user = new User(Request::all());
+        $user->save();
+
+        return redirect()->route('admin.users.index');
 	}
 
 	/**
