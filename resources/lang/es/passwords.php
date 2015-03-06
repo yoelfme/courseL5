@@ -12,6 +12,9 @@ return array(
     | has failed, such as for an invalid token or invalid new password.
     |
     */
+    "credentiasl" => array(
+        "invalid" => "El usuario/password no es valido",
+    ),
 
     "password" => "Las contraseñas deben contener al menos 6 caracteres y coincidir.",
 
@@ -22,5 +25,4 @@ return array(
     "sent"     => "¡Recordatorio de contraseña enviado!",
 
     "reset"    => "Su contraseña ha sido restablecida!",
-
 );

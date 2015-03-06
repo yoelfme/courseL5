@@ -101,6 +101,9 @@ return array(
     |
     */
 
-    'attributes' => array(),
+    'attributes' => array(
+        'email' => 'Correo electronico',
+        'password' => 'Contraseña'
+    ),
 
 );
