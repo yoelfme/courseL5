@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Nuevo Usuario</div>
+                    <div class="panel-heading">Editar usuario: {{ $user->first_name }}</div>
                     <div class="panel-body">
                         @include('admin.users.errors.messages')
-                        {!! Form::open(['route'=>'admin.users.store', 'method'=>'POST']) !!}
+                        {!! Form::model($user,['route'=>['admin.users.update',$user->id], 'method'=>'PUT']) !!}
                             @include('admin.users.partials.fields')
-                            {!! Form::submit('Crear',['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Actualizar',['class'=>'btn btn-primary']) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>

@@ -3,8 +3,11 @@
 use CourseL5\Http\Requests;
 use CourseL5\Http\Controllers\Controller;
 
+use CourseL5\Http\Requests\CreateUserRequest;
+use CourseL5\Http\Requests\EditUserRequest;
 use CourseL5\User;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller {
 
@@ -35,11 +38,10 @@ class UsersController extends Controller {
      * @param Request $request
      * @return Response
      */
-	public function store()
+	public function store(CreateUserRequest $request)
 	{
-		$user = new User(Request::all());
-        $user->save();
 
+		$user = new User($request->all());
         return redirect()->route('admin.users.index');
 	}
 
@@ -62,7 +64,8 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $user = User::findOrFail($id);
+		return view('admin.users.edit',compact('user'));
 	}
 
 	/**
@@ -71,9 +74,14 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(EditUserRequest $request, $id)
 	{
-		//
+		$user = User::findOrFail($id);
+        $user->fill($request->all());
+        $user->save();
+
+        return redirect()->back();
+
 	}
 
 	/**
