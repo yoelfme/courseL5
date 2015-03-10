@@ -12,8 +12,11 @@
                             @include('admin.users.partials.fields')
                             {!! Form::submit('Actualizar',['class'=>'btn btn-primary']) !!}
                         {!! Form::close() !!}
+
+
                     </div>
                 </div>
+                @include('admin.users.partials.delete')
             </div>
         </div>
     </div>

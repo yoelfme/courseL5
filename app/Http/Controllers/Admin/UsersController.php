@@ -7,6 +7,7 @@ use CourseL5\Http\Requests\CreateUserRequest;
 use CourseL5\Http\Requests\EditUserRequest;
 use CourseL5\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller {
@@ -92,7 +93,14 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        //		User::destroy($id);
+        $user = User::findOrFail($id);
+        $user->delete();
+
+
+        Session::flash('message',$user->full_name . ' fue eliminado de nuestros registros');
+
+        return redirect()->route('admin.users.index');
 	}
 
 }
