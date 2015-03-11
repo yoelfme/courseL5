@@ -7,10 +7,24 @@ use CourseL5\Http\Requests\CreateUserRequest;
 use CourseL5\Http\Requests\EditUserRequest;
 use CourseL5\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller {
+
+    protected $user;
+
+    function __construct()
+    {
+        $this->beforeFilter('@findUser',['only'=>'show','edit','update','destroy']);
+    }
+
+    public function findUser(Route $route)
+    {
+        $this->user = User::findOrFail($route->getParameter('users'));
+    }
+
 
 	/**
 	 * Display a listing of the resource.
@@ -65,8 +79,7 @@ class UsersController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $user = User::findOrFail($id);
-		return view('admin.users.edit',compact('user'));
+		return view('admin.users.edit')->with('user',$this->user);
 	}
 
 	/**
@@ -77,9 +90,9 @@ class UsersController extends Controller {
 	 */
 	public function update(EditUserRequest $request, $id)
 	{
-		$user = User::findOrFail($id);
-        $user->fill($request->all());
-        $user->save();
+
+        $this->user->fill($request->all());
+        $this->user->save();
 
         return redirect()->back();
 
@@ -93,12 +106,11 @@ class UsersController extends Controller {
 	 */
 	public function destroy($id)
 	{
-        //		User::destroy($id);
-        $user = User::findOrFail($id);
-        $user->delete();
+        $this->user = User::findOrFail($id);
+        $this->user->delete();
 
 
-        Session::flash('message',$user->full_name . ' fue eliminado de nuestros registros');
+        Session::flash('message',$this->user->full_name . ' fue eliminado de nuestros registros');
 
         return redirect()->route('admin.users.index');
 	}
