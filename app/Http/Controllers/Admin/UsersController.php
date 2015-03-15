@@ -49,8 +49,8 @@ class UsersController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param CreateUserRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
 	public function store(CreateUserRequest $request)
 	{
@@ -81,12 +81,13 @@ class UsersController extends Controller {
 		return view('admin.users.edit')->with('user',$this->user);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param EditUserRequest $request
+     * @param  int $id
+     * @return Response
+     */
 	public function update(EditUserRequest $request, $id)
 	{
 
@@ -97,12 +98,13 @@ class UsersController extends Controller {
 
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @param Request $request
+     * @return Response
+     */
 	public function destroy($id, Request $request)
 	{
 //        abort(500);
