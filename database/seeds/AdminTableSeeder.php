@@ -17,7 +17,8 @@ class AdminTableSeeder extends Seeder {
             'last_name' => 'Monzon',
             'email'     => 'yoelfme@hotmail.com',
             'password'  => \Hash::make('secret'),
-            'type'      => 'admin'
+            'type'      => 'admin',
+            'full_name' => 'Yoel Monzon'
         ));
 
         \DB::table('user_profiles')->insert(array(

@@ -24,15 +24,16 @@ class UsersController extends Controller {
         $this->user = User::findOrFail($route->getParameter('users'));
     }
 
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return Response
+     */
+	public function index(Request $request)
 	{
-		$users  = User::paginate();
+
+		$users  = User::name($request->get('name'))->orderBy('id','DESC')->paginate();
         return view('admin.users.index',compact('users'));
 	}
 
@@ -56,6 +57,8 @@ class UsersController extends Controller {
 	{
 
 		$user = new User($request->all());
+        $user->save();
+
         return redirect()->route('admin.users.index');
 	}
 

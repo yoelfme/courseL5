@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['first_name','last_name', 'email', 'password','type'];
+	protected $fillable = ['first_name','last_name','full_name', 'email', 'password','type'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -47,6 +47,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         {
             $this->attributes['password'] = bcrypt($value);
         }
+    }
+
+    public function scopeName($query,$name)
+    {
+        if(trim($name) != "")
+            $query->where('full_name','LIKE',"%$name");
+    }
+
+    public function save(array $options = array())
+    {
+        $this->full_name = "$this->first_name $this->last_name";
+        parent::save();
     }
 
 }
