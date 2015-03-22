@@ -13,7 +13,7 @@
         <tr data-id="{{ $user->id }}">
             <td>{{ $user->id }}</td>
             <td>{{ $user->full_name }}</td>
-            <td>{{ $user->type }}</td>
+            <td>{{ trans("options.types.$user->type") }}</td>
             <td>{{ $user->email }}</td>
             <td>
                 <a href="{{ route('admin.users.edit',$user) }}">Editar</a>

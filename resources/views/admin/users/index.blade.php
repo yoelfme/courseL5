@@ -11,13 +11,7 @@
                         <p class="alert alert-success">{{ Session::get('message') }}</p>
                     @endif
                     <div class="panel-body">
-                        {!! Form::open(['route'=>'admin.users.index','method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']) !!}
-                            <div class="form-group">
-                                {!! Form::text('name',null,['class' => 'form-control', 'placeholder' => 'Nombre de usuario' ])  !!}
-                            </div>
-                            <button type="submit" class="btn btn-default">Buscar</button>
-                        {!! Form::close() !!}
-
+                        @include('admin.users.partials.filter')
                         <p>
                             <a class="btn btn-info" href="{{ route('admin.users.create') }}" role="button">
                                 Nuevo Usuario
@@ -26,7 +20,7 @@
 
                         <p>Hay {{ $users->total() }} usuarios</p>
                         @include('admin.users.partials.table')
-                        {!! $users->render()  !!}
+                        {!! $users->appends(Request::only(['name','type']))->render()  !!}
                     </div>
                 </div>
             </div>
