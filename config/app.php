@@ -149,7 +149,7 @@ return [
 		'CourseL5\Providers\ConfigServiceProvider',
 		'CourseL5\Providers\EventServiceProvider',
 		'CourseL5\Providers\RouteServiceProvider',
-
+        'CourseL5\Providers\ValidatorServiceProvider',
 	],
 
 	/*
