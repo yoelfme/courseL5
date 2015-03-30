@@ -16,6 +16,7 @@ class UsersController extends Controller {
     protected $user;
     function __construct()
     {
+        $this->middleware('auth');
         $this->beforeFilter('@findUser',['only' => ['show', 'edit', 'update', 'destroy']]);
     }
 
