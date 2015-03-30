@@ -1,6 +1,7 @@
 <?php namespace CourseL5\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class ValidatorServiceProvider extends ServiceProvider {
 

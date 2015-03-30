@@ -27,6 +27,7 @@ class Kernel extends HttpKernel {
 		'auth' => 'CourseL5\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'CourseL5\Http\Middleware\RedirectIfAuthenticated',
+        'is_admin' => 'CourseL5\Http\Middleware\IsAdmin'
 	];
 
 }
